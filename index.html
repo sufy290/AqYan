@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Day Countdown</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: url('your-background-image-url.jpg') center/cover fixed;
+      color: #fff;
+    }
+
+    .countdown-container {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #FFD700; /* Gold color */
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .countdown-item {
+      margin: 0 10px;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+    }
+
+    .countdown-item span {
+      font-size: 24px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="countdown-container">
+  <h1>#AqYaan Wedding Day Countdown</h1>
+  <div class="countdown" id="countdown">
+    <div class="countdown-item">
+      <span id="days">00</span>
+      <br>days
+    </div>
+    <div class="countdown-item">
+      <span id="hours">00</span>
+      <br>hours
+    </div>
+    <div class="countdown-item">
+      <span id="minutes">00</span>
+      <br>minutes
+    </div>
+    <div class="countdown-item">
+      <span id="seconds">00</span>
+      <br>seconds
+    </div>
+  </div>
+</div>
+
+<script>
+  // Set the date we're counting down to
+  const weddingDate = new Date("December 14, 2024 17:00:00").getTime();
+
+  // Update the countdown every 1 second
+  const countdownInterval = setInterval(function () {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+    document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+    document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+    document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+    // If the countdown is over, display a message
+    if (distance < 0) {
+      clearInterval(countdownInterval);
+      document.getElementById("countdown").innerHTML = "<p>It's time to celebrate!</p>";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
